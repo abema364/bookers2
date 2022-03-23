@@ -1,4 +1,5 @@
 <h2>Editing Book</h2>
+<%= render 'error', model: @book %>
 <%= form_with model: @book, url: book_path(@book.id), method: :patch do |f| %>
   <div class="field">
     <%= f.label :title %><br>
