@@ -1,14 +1,27 @@
-<% if user.image.attached? %>
-  <%= image_tag user.image, size: "200x200" %>
-<% else %>
-  <%= image_tag 'no_image', size: "200x200" %>
-<% end %>
-<h3>name</h3>
-<%= user.name %>
-<h3>introduction</h3>
-<%= user.introduction %>
-<% if current_user.id == user.id %>
-  <%= link_to "edit", edit_user_path(current_user.id) %>
-<% else %>
-  <%= link_to "edit", user_path(current_user.id) %>
-<% end %>
+<h2>User info</h2>
+<table class='table'>
+  <tr>
+    <% if user.image.attached? %>
+      <%= image_tag user.image, size: "63x63" %>
+    <% else %>
+      <%= image_tag 'no_image', size: "63x63" %>
+    <% end %>
+    </tr>
+    <tr>
+      <th>name</th>
+      <th><%= user.name %></th>
+    </tr>
+    <tr>
+      <th>introduction</th>
+      <th><%= user.introduction %></th>
+    </tr>
+</table>
+<div class='row'>
+  <% if current_user.id == user.id %>
+    <%= link_to edit_user_path(current_user.id),  class: 'btn btn-outline-secondary btn-block' do %>
+  		<i class="fas fa-user-cog"></i>
+    <% end %>
+  <% else %>
+    <%= link_to "*", user_path(current_user.id), class: 'btn btn-outline-secondary btn-block' %>
+  <% end %>
+</div>
