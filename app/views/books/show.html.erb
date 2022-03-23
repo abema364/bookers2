@@ -1,7 +1,19 @@
+<h2>User info</h2>
+<%= render 'users/user', user: @user %>
+
+<h2>New book</h2>
+<%= render 'book', book: @book %>
+
 <h2>Book detail</h2>
-<%= link_to @book.title, book_path(@book.id) %>
-<%= @book.body %>
-<% if @book.user_id == current_user.id %>
+<% if @books.user.image.attached? %>
+  <%= image_tag @books.user.image, size: "200x200" %>
+<% else %>
+  <%= image_tag 'no_image', size: "200x200" %>
+<% end %>
+<%= link_to @books.user.name, user_path(@books.user.id) %>
+<%= link_to @books.title, book_path(@books.id) %>
+<%= @books.body %>
+<% if @books.user_id == current_user.id %>
   <%= link_to "edit", edit_book_path %>
-  <%= link_to "Destroy", book_path(@book.id), method: :delete, "data-confirm"  => "Are you sure?" %>
+  <%= link_to "Destroy", book_path(@books.id), method: :delete, "data-confirm"  => "Are you sure?" %>
 <% end %>

@@ -1,0 +1,14 @@
+<% if user.image.attached? %>
+  <%= image_tag user.image, size: "200x200" %>
+<% else %>
+  <%= image_tag 'no_image', size: "200x200" %>
+<% end %>
+<h3>name</h3>
+<%= user.name %>
+<h3>introduction</h3>
+<%= user.introduction %>
+<% if current_user.id == user.id %>
+  <%= link_to "edit", edit_user_path(current_user.id) %>
+<% else %>
+  <%= link_to "edit", user_path(current_user.id) %>
+<% end %>
