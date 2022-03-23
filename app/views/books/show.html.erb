@@ -9,10 +9,12 @@
       <table class="table">
         <tr>
           <td>
-            <% if @books.user.image.attached? %>
-              <%= image_tag @books.user.image, size: "40x40" %>
-            <% else %>
-              <%= image_tag 'no_image', size: "40x40" %>
+            <%= link_to user_path(@books.user.id) do %>
+              <% if @books.user.profile_image.attached? %>
+                <%= image_tag @books.user.profile_image, size: "40x40" %>
+              <% else %>
+                <%= image_tag 'no_image', size: "40x40" %>
+              <% end %>
             <% end %>
             <br>
             <%= link_to @books.user.name, user_path(@books.user.id) %>
